@@ -1,11 +1,11 @@
 import React from "react"
-import { Text, View } from "react-native"
+import { StyleSheet, Text, View } from "react-native"
 
 const ContainerView = ({children}:any) =>{
     return(
         <>
-        <View>
-            <Text>Hello World</Text>
+        <View style={styles.container}>
+            {children}
         </View>
         </>
     )
@@ -14,3 +14,14 @@ const ContainerView = ({children}:any) =>{
 
 
 export default ContainerView;
+
+
+
+const styles = StyleSheet.create({
+    container:{
+        flex: 1,
+        paddingHorizontal: 10,
+        paddingVertical: 10,
+        overflow: 'hidden'
+    }
+})
