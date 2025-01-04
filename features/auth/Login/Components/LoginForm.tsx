@@ -9,13 +9,13 @@ import { useContext } from "react";
 import { AuthContext } from "@/context/AuthContext/AuthContext";
 import { useRouter } from "expo-router";
 import { storeToken } from "@/services/AuthServices";
-// import { useGetLogin } from "../hooks/useGetLogin";
+import { useGetLogin } from "../hooks/useGetLogin";
 
 
 
 const LoginForm = () =>{
 
-    // const {mutate} = useGetLogin();
+    const {mutate} = useGetLogin();
     const {setIsAuthenticated}  = useContext(AuthContext);
     const router = useRouter();
 
@@ -23,23 +23,17 @@ const LoginForm = () =>{
     return(
         <Formik
         initialValues={LoginInitialState}
-        onSubmit={(values)=>{
-            console.log(values);
-            // mutate({email:values.email,password:values.password});
+        onSubmit={(values,action)=>{
+            mutate({email:values.email,password:values.password});
             setTimeout(()=>{
-                if(values.email !== '')
-                {
-                    setIsAuthenticated(true);
-                    router.push('/(app)/home');
-                    storeToken("auth");
-                }
+               action.setSubmitting(true);
             },500);
             
         }}
         >
             {
                 ({handleChange,handleBlur,handleSubmit,values}) => (
-                    <View style={LoginStyles.container}>
+                    <View>
                         <TextInput
                             label={'Username'}
                             onChangeText={handleChange('email')}
@@ -50,7 +44,6 @@ const LoginForm = () =>{
                             mode="outlined"
                             outlineColor="black"
                             activeOutlineColor="black"
-                            textColor="black"
                             right={
                                 <TextInput.Icon icon={()=> <FontAwesome name="user" size={21} color={'black'} />}/>
                             }

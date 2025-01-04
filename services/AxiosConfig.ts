@@ -3,7 +3,7 @@ import { getAuthToken } from "./AuthServices";
 
 
 export const axiosApi = axios.create({
-    baseURL:`${process.env.EXPO_PUBLIC_API_UR}`,
+    baseURL:`https://laravelticket.healnearn.com/api/admin-service`,
     headers:{
         'Content-Type':'application/json'
     }

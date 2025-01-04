@@ -3,6 +3,9 @@ import { login_query_key } from "../services/queryKey"
 import { getLoggedIn } from "../services/api"
 import { ILoginInterface } from "../interface/LoginInterface"
 import { clearStorage, storeToken } from "@/services/AuthServices"
+import { useContext } from "react"
+import { AuthContext } from "@/context/AuthContext/AuthContext"
+import { useRouter } from "expo-router"
 
 
 
@@ -10,25 +13,30 @@ import { clearStorage, storeToken } from "@/services/AuthServices"
 
 
 export const useGetLogin = () =>{
+
+    const {setIsAuthenticated} = useContext(AuthContext);
+    const router = useRouter();
+
     return useMutation({
         mutationKey:[login_query_key],
         mutationFn:(request:ILoginInterface)=>{
             return getLoggedIn(request);
         },
         retry:false,
-        onSuccess(data){
-            console.log("data",data.data);
+        async onSuccess(data){
             if(data.data.data.status === 200)
             {
-               storeToken(data.data.data.access_token);
+               await storeToken(data.data.data.access_token);
+               setIsAuthenticated(true);
+               router.replace('/(app)/home');
             }
             else if(data.data.error.status == 401)
             {
               clearStorage();
             }
         },
-        onError(data){
-            console.log(data);
+        async onError(data){
+            clearStorage();
         }
     })
 }
