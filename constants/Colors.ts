@@ -24,3 +24,14 @@ export const Colors = {
     tabIconSelected: tintColorDark,
   },
 };
+
+
+
+export const AppColors ={
+  gray:{
+    gray200:'#e5e7eb',
+    gray500:'#6b7280',
+    gray700:'#374151',
+    gray900:'#111827'
+  }
+}

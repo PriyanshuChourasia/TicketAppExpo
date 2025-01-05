@@ -6,6 +6,7 @@ import {PaperProvider} from "react-native-paper";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query"
 import { getAuthToken } from "@/services/AuthServices";
 import ActivityLoaderNative from "@/components/ActivityLoaderNative";
+import SplashScreenView from "@/components/SplashScreenView";
 
 const InitialLayout = () => {
 
@@ -19,9 +20,6 @@ const InitialLayout = () => {
 
     const checkAuth = async() =>{
       const token = await getAuthToken();
-
-      console.log("token",token);
-
       if(token !== undefined && !inTabsGroup)
       {
         setIsAuthenticated(true);
@@ -33,13 +31,13 @@ const InitialLayout = () => {
       }
       else if(token == undefined )
       {
-        router.replace('/(public)/login');
+        router.replace('/(public)/welcome');
       }
     }
   
     checkAuth();
 
-  },[segments]);
+  },[]);
 
   return <Slot />;
 };
@@ -51,14 +49,14 @@ export default function RootLayout() {
 
   setTimeout(() => {
     setLoading(false);
-  }, 700);
+  }, 300);
 
   return (
     <>
     <QueryClientProvider client={queryClient}>
       <CombineContextProvider>
           <PaperProvider>
-            {loading ? <ActivityLoaderNative/> : <InitialLayout /> }
+          {loading ?  <ActivityLoaderNative/> : <InitialLayout/>}   
           </PaperProvider>
       </CombineContextProvider>
       </QueryClientProvider>

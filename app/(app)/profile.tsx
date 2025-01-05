@@ -14,7 +14,7 @@ const Profile = () =>{
     const handlePress = () =>{
         clearStorage();
         setIsAuthenticated(false);
-        router.replace('/(public)/login');
+        router.replace('/(public)/welcome');
     }
 
     return(
