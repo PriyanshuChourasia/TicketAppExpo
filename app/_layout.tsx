@@ -6,7 +6,7 @@ import {PaperProvider} from "react-native-paper";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query"
 import { getAuthToken } from "@/services/AuthServices";
 import ActivityLoaderNative from "@/components/ActivityLoaderNative";
-import SplashScreenView from "@/components/SplashScreenView";
+import Toast from "react-native-toast-message";
 
 const InitialLayout = () => {
 
@@ -56,7 +56,8 @@ export default function RootLayout() {
     <QueryClientProvider client={queryClient}>
       <CombineContextProvider>
           <PaperProvider>
-          {loading ?  <ActivityLoaderNative/> : <InitialLayout/>}   
+          {loading ?  <ActivityLoaderNative/> : <InitialLayout/>}
+          <Toast/>
           </PaperProvider>
       </CombineContextProvider>
       </QueryClientProvider>

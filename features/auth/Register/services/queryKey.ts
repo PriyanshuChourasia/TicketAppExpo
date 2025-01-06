@@ -1,0 +1,1 @@
+export const register_api_query_key = 'register-api-query';
