@@ -10,6 +10,7 @@ import { RegisterInitialState } from "../initialState/RegisterInitialState";
 import { LoginStyles } from "../../Login/styles/LoginStyles";
 import { RegisterFormStyle } from "../styles/RegisterStyle";
 import { useRegister } from "../hooks/useRegister";
+import { UserRegistrationSchema } from "../hooks/UserRegistrationSchema";
 
 
 
@@ -38,6 +39,7 @@ const RegisterForm = () =>{
                         setIsLoading(false);
                     }, 800);
                 }}
+                validationSchema={UserRegistrationSchema}
             >
             {
                 ({handleChange,handleBlur,handleSubmit,values,errors}) => (

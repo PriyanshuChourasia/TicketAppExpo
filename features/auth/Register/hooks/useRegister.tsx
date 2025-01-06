@@ -26,7 +26,7 @@ export const useRegister= () =>{
                 type:"success",
                 text1:"User Registered",
                 text2:"Now you can login",
-                visibilityTime: 1200,
+                visibilityTime: 1500,
             })
             router.push("/(public)/login");
         },
