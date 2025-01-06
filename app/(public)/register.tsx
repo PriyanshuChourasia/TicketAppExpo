@@ -1,4 +1,5 @@
 import ContainerView from "@/components/ContainerView";
+import RegisterScreen from "@/features/auth/Register/RegisterScreen";
 import React from "react";
 import { Text } from "react-native";
 
@@ -6,7 +7,7 @@ import { Text } from "react-native";
 const Register = () =>{
     return(
         <ContainerView>
-            <Text>Register Page</Text>
+            <RegisterScreen/>
         </ContainerView>
     )
 }

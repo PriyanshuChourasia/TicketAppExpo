@@ -1,40 +1,44 @@
-import {Button, TextInput} from "react-native-paper";
-import {Formik} from "formik";
+import { TextInput} from "react-native-paper";
+import {ErrorMessage, Formik} from "formik";
 import LoginInitialState from "../initialState/LoginInitialState";
-import { View } from "react-native";
 import { LoginStyles } from "../styles/LoginStyles";
 import FontAwesome  from '@expo/vector-icons/FontAwesome';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
-import { useContext } from "react";
-import { AuthContext } from "@/context/AuthContext/AuthContext";
 import { useRouter } from "expo-router";
-import { storeToken } from "@/services/AuthServices";
 import { useGetLogin } from "../hooks/useGetLogin";
+import ThemedButton from "@/components/ThemedButton";
+import { ThemedContainer } from "@/components/ThemedContainer";
+import { useState } from "react";
+import { UserFormSchema } from "../hooks/UserFormSchema";
+import FomrikErrorText from "@/components/FormikErrorText";
+
 
 
 
 const LoginForm = () =>{
 
     const {mutate} = useGetLogin();
-    const {setIsAuthenticated}  = useContext(AuthContext);
-    const router = useRouter();
-
+    const [isLoading,setIsLoading] = useState<boolean>(false);
 
     return(
         <Formik
         initialValues={LoginInitialState}
+        validationSchema={UserFormSchema}
         onSubmit={(values,action)=>{
+            setIsLoading(true);
             mutate({email:values.email,password:values.password});
             setTimeout(()=>{
-               action.setSubmitting(true);
-            },500);
+               action.setSubmitting(true);``
+               setIsLoading(false);
+            },1100);
             
         }}
         >
             {
-                ({handleChange,handleBlur,handleSubmit,values}) => (
-                    <View>
+                ({handleChange,handleBlur,handleSubmit,values,errors}) => (
+                    <ThemedContainer>
                         <TextInput
+                            id="email"
                             label={'Username'}
                             onChangeText={handleChange('email')}
                             onBlur={handleBlur('email')}
@@ -43,12 +47,15 @@ const LoginForm = () =>{
                             style={LoginStyles.inputContainer}
                             mode="outlined"
                             outlineColor="black"
+                            textColor="black"
                             activeOutlineColor="black"
                             right={
                                 <TextInput.Icon icon={()=> <FontAwesome name="user" size={21} color={'black'} />}/>
                             }
                         />
+                        {errors.email && <FomrikErrorText msg={errors.email} />}
                         <TextInput
+                            id="password"
                             label={'Password'}
                             onChangeText={handleChange('password')}
                             onBlur={handleBlur('password')}
@@ -63,17 +70,10 @@ const LoginForm = () =>{
                                 <TextInput.Icon icon={()=><FontAwesome5 name="eye" size={20} color="black" />} />
                             }
                         />
-
-                        <Button
-                         onPress={()=>handleSubmit()} 
-                         mode="elevated" 
-                         style={LoginStyles.buttonStyle}
-                         buttonColor="black"
-                         textColor="white"
-                         >
-                            Login
-                        </Button>
-                    </View>
+                         {errors.password && <FomrikErrorText msg={errors.password} />}
+                        
+                        <ThemedButton marginY={20}  onButtonPress={handleSubmit} name="Login" isBtnLoading={isLoading} />
+                    </ThemedContainer>
                 )
             }
         </Formik>

@@ -22,7 +22,7 @@ const AppButton: React.FC<AppButtonInterface> = ({name}) =>{
     const handleRoute  = async() =>{
         setIsLoading(true);
         try{
-            await new Promise(resolve => setTimeout(resolve,1000));
+            await new Promise(resolve => setTimeout(resolve,1400));
         }catch(e){
             console.warn(e);
         }finally{

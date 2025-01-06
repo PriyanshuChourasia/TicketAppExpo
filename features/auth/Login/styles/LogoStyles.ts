@@ -11,4 +11,23 @@ export const LogoStyles = StyleSheet.create({
         width:80,
         height:80
     }
+});
+
+
+
+
+
+
+
+
+export const LoginButtonStyle = StyleSheet.create({
+    container:{
+        marginTop:20
+    },
+    dividerStyle:{
+        marginVertical:10
+    },
+    registerStyle:{
+        marginVertical:7
+    }
 })

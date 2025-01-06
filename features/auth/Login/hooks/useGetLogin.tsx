@@ -28,7 +28,9 @@ export const useGetLogin = () =>{
             {
                await storeToken(data.data.data.access_token);
                setIsAuthenticated(true);
+               setTimeout(() => {
                router.replace('/(app)/home');
+               }, 1100);
             }
             else if(data.data.error.status == 401)
             {

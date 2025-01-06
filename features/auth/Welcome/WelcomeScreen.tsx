@@ -31,7 +31,7 @@ const WelcomeScreen = () =>{
                 </ThemedText>
             </ThemedContainer>
             <ThemedContainer style={WelcomeStyle.centerContainer}>
-                <AppButton name="Login" />
+                <AppButton name="Next" />
             </ThemedContainer>
           
         </ThemedContainer>

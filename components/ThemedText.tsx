@@ -8,10 +8,12 @@ export type ThemedTextProps = TextProps & {
     size:'sm' | 'md' | 'base' | 'lg' | 'xl' | 'xxl' | 'large';
     fontWt?:'light' | 'normal' | 'medium' | 'semibold' | 'bold',
     colorScheme?:string;
+    alignCenter?:boolean
+
 }
 
 
-export function ThemedText({style,size,colorScheme,fontWt,...rest}:ThemedTextProps){
+export function ThemedText({style,size,alignCenter,colorScheme,fontWt,...rest}:ThemedTextProps){
     const {colorTheme} = useContext(ThemeContext);
     
 
@@ -32,6 +34,7 @@ export function ThemedText({style,size,colorScheme,fontWt,...rest}:ThemedTextPro
                 fontWt === 'medium' ? themeStyles.fontMedium :  undefined,
                 fontWt === 'semibold' ? themeStyles.fontSemiBold :  undefined,
                 fontWt === 'bold' ? themeStyles.fontBold :  undefined,
+                alignCenter ? themeStyles.textCenter : undefined,
             style
         ]}
         {...rest}
@@ -116,4 +119,7 @@ const themeStyles = StyleSheet.create({
     fontBold:{
         fontWeight:'bold'
     },
+    textCenter:{
+        textAlign:'center'
+    }
 })

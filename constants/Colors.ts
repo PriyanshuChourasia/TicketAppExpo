@@ -33,5 +33,8 @@ export const AppColors ={
     gray500:'#6b7280',
     gray700:'#374151',
     gray900:'#111827'
+  },
+  red:{
+    red600:'#dc2626'
   }
 }
