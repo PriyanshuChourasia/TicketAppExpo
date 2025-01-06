@@ -18,6 +18,7 @@ import FomrikErrorText from "@/components/FormikErrorText";
 const LoginForm = () =>{
 
     const {mutate} = useGetLogin();
+    const [isPassword,setIsPassword] = useState<boolean>(true);
     const [isLoading,setIsLoading] = useState<boolean>(false);
 
     return(
@@ -60,14 +61,14 @@ const LoginForm = () =>{
                             onChangeText={handleChange('password')}
                             onBlur={handleBlur('password')}
                             value={values.password}
-                            secureTextEntry
+                            secureTextEntry={isPassword}
                             style={LoginStyles.inputContainer}
                             mode="outlined"
                             outlineColor="black"
                             activeOutlineColor="black"
                             textColor="black"
                             right={
-                                <TextInput.Icon icon={()=><FontAwesome5 name="eye" size={20} color="black" />} />
+                                <TextInput.Icon onPress={()=> setIsPassword(!isPassword)} icon={()=><FontAwesome5 name={isPassword ? 'eye' : 'eye-slash'} size={20} color="black" />} />
                             }
                         />
                          {errors.password && <FomrikErrorText msg={errors.password} />}
