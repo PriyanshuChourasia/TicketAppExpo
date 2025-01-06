@@ -27,7 +27,6 @@ const RegisterForm = () =>{
             <Formik
                 initialValues={RegisterInitialState}
                 onSubmit={(values,action)=>{
-                    console.log(values);
                     setIsLoading(true);
                     setTimeout(() => {
                         mutate({

@@ -17,7 +17,6 @@ export async function getLoggedIn(request:ILoginInterface):Promise<AxiosResponse
         });
         return response;
     }catch(error:unknown){
-        console.log(error,"error came");
         throw new Error("Network error");
     }
 }
