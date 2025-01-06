@@ -6,7 +6,7 @@ export interface IRegisterResponseInterface extends SuccessInterface{
         username:string;
         email:string;
     },
-    errors: {
+    error: {
         message: string
     }
     code:number;

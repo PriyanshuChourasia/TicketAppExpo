@@ -14,8 +14,7 @@ export async function getUserRegister(request:IRegisterInterface):Promise<AxiosR
     }catch(error:any){
         if(error.response && error.response.data)
         {
-            const {message} = error.response.data.errors || {};
-            // const status = error.response.data.code;
+            const {message} = error.response.data.error || {};
             throw new Error(message);
         }
         throw new Error("Network Error");

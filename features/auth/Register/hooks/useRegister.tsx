@@ -21,7 +21,7 @@ export const useRegister= () =>{
             return getUserRegister(request);
         },
         retry:false,
-        onSuccess(data){
+        onSuccess(){
             Toast.show({
                 type:"success",
                 text1:"User Registered",
@@ -32,7 +32,7 @@ export const useRegister= () =>{
         },
         onError(error:any){
             if (error.response && error.response.data) {
-                Alert.alert(error.response.data.errors.message.split('.')[0]);
+                Alert.alert(error.response.data.error.message.split('.')[0]);
             } else if (error.message) {
                 console.error("Client Error:", error.message);
             } else {

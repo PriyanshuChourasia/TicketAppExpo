@@ -6,7 +6,7 @@ export interface ILoginTokenResponse extends SuccessInterface{
         refresh_token:string,
         status:number
     },
-    error:{
+    errors:{
         message:string,
         error:string,
         status:number

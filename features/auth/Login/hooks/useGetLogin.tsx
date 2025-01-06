@@ -6,6 +6,7 @@ import { clearStorage, storeToken } from "@/services/AuthServices"
 import { useContext } from "react"
 import { AuthContext } from "@/context/AuthContext/AuthContext"
 import { useRouter } from "expo-router"
+import { Alert } from "react-native"
 
 
 
@@ -32,12 +33,20 @@ export const useGetLogin = () =>{
                router.replace('/(app)/home');
                }, 1100);
             }
-            else if(data.data.error.status == 401)
+            else if(data.data.errors.status == 401)
             {
               clearStorage();
             }
         },
-        async onError(data){
+        async onError(error:any){
+            if (error.response && error.response.data) {
+                Alert.alert(error.response.data.errors.message.split('.')[0]);
+            } else if (error.message) {
+                console.log("Client Error:", error);
+                Alert.alert(error.message,"Please check your credentials");
+            } else {
+                console.error("Unexpected Error:", error);
+            }
             clearStorage();
         }
     })

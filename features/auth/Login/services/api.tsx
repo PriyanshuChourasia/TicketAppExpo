@@ -16,7 +16,12 @@ export async function getLoggedIn(request:ILoginInterface):Promise<AxiosResponse
             password:request.password
         });
         return response;
-    }catch(error:unknown){
+    }catch(error:any){
+        if(error.response && error.response.data)
+            {
+                const {message} = error.response.data.error || {};
+                throw new Error(message);
+            }
         throw new Error("Network error");
     }
 }
