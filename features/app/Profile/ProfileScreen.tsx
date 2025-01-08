@@ -12,16 +12,6 @@ import LogoutButton from './components/LogoutButton';
 
 const ProfileScreen = () => {
 
-  const {setProfileData} = useContext(ProfileContext);
-  const {data,isSuccess} = useGetProfileInfo();
-
-  useEffect(()=>{
-    if(isSuccess)
-    {
-      storeProfileData(data.data);
-      setProfileData(data.data);
-    }
-  },[isSuccess]);
 
   
 

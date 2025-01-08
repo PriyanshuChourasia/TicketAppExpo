@@ -11,8 +11,9 @@ export async function getProfileInfo():Promise<AxiosResponse<IProfileInterface>>
     try{
         const response = axiosApi.get('/auth/profile');
         return response;
-    }catch(error:unknown)
+    }catch(error:any)
     {
+        console.log("Error",error);
         throw new Error("Network Error");
     }
 }
