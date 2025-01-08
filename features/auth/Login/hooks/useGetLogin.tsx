@@ -42,7 +42,7 @@ export const useGetLogin = () =>{
             if (error.response && error.response.data) {
                 Alert.alert(error.response.data.errors.message.split('.')[0]);
             } else if (error.message) {
-                console.log("Client Error:", error);
+                console.error("Client Error:", error);
                 Alert.alert(error.message,"Please check your credentials");
             } else {
                 console.error("Unexpected Error:", error);

@@ -1,16 +1,12 @@
-import ContainerView from "@/components/ContainerView";
-import ThemedText from "@/components/ThemedText";
+import HomeScreen from "@/features/app/home/HomeScreen";
 import React from "react";
-import { Text } from "react-native";
 
 
 const Home = () =>{
     return(
-        <ContainerView>
-            <ThemedText size="xl" fontWt="normal">
-                Hello Themed Text
-            </ThemedText>
-        </ContainerView>
+        <>
+            <HomeScreen/>  
+        </>
     )
 }
 

@@ -1,27 +1,14 @@
-import ContainerView from "@/components/ContainerView";
-import { AuthContext } from "@/context/AuthContext/AuthContext";
-import { clearStorage } from "@/services/AuthServices";
-import { useRouter } from "expo-router";
-import React, { useContext } from "react";
-import { Button, Text } from "react-native";
+import { ThemedContainer } from "@/components/ThemedContainer";
+import ProfileScreen from "@/features/app/Profile/ProfileScreen";
+import React from "react";
 
 
 const Profile = () =>{
 
-    const router = useRouter();
-    const {setIsAuthenticated} = useContext(AuthContext);
-
-    const handlePress = () =>{
-        clearStorage();
-        setIsAuthenticated(false);
-        router.replace('/(public)/welcome');
-    }
-
     return(
-        <ContainerView>
-            <Text>Profile</Text>
-            <Button onPress={handlePress} title="Logout" />
-        </ContainerView>
+        <ThemedContainer style={{flex:1}}>
+            <ProfileScreen/>
+        </ThemedContainer>
     )
 }
 
