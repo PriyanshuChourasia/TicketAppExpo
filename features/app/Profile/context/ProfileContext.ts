@@ -8,8 +8,8 @@ import { IProfileInterface } from "../interface/ProfileInterface";
 
 
 interface ProfileProps{
-    profileData: IProfileInterface;
-    setProfileData: React.Dispatch<React.SetStateAction<IProfileInterface>>;
+    profileData: IProfileInterface | null;
+    setProfileData: React.Dispatch<React.SetStateAction<IProfileInterface | null>>;
 }
 
 

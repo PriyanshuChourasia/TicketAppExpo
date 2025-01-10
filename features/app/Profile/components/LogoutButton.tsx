@@ -1,10 +1,11 @@
 import ThemedText from "@/components/ThemedText";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { StyleSheet } from "react-native";
 import { Button } from "react-native-paper";
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { useRouter } from "expo-router";
 import { clearStorage } from "@/services/AuthServices";
+import { ProfileContext } from "../context/ProfileContext";
 
 
 
@@ -15,12 +16,14 @@ import { clearStorage } from "@/services/AuthServices";
 const LogoutButton = () =>{
 
     const [isLoading,setIsLoading] = useState<boolean>(false);
+    const {setProfileData} = useContext(ProfileContext);
 
     const router = useRouter();
 
     const handleLogout = () => {
         setIsLoading(true);
         clearStorage();
+        setProfileData(null);
         setTimeout(() => {
             router.replace('/(public)/login');
             setIsLoading(false);

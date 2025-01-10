@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { login_query_key } from "../services/queryKey"
 import { getLoggedIn } from "../services/api"
 import { ILoginInterface } from "../interface/LoginInterface"
@@ -7,6 +7,8 @@ import { useContext } from "react"
 import { AuthContext } from "@/context/AuthContext/AuthContext"
 import { useRouter } from "expo-router"
 import { Alert } from "react-native"
+import { profile_query_key } from "@/features/app/Profile/services/queryKey"
+import { getProfileInfo } from "@/features/app/Profile/services/api"
 
 
 
@@ -17,6 +19,7 @@ export const useGetLogin = () =>{
 
     const {setIsAuthenticated} = useContext(AuthContext);
     const router = useRouter();
+    const queryClient = useQueryClient()
 
     return useMutation({
         mutationKey:[login_query_key],
@@ -28,6 +31,10 @@ export const useGetLogin = () =>{
             if(data.data.data.status === 200)
             {
                await storeToken(data.data.data.access_token);
+               queryClient.fetchQuery({queryKey:[profile_query_key],
+                queryFn:()=> getProfileInfo()
+               });
+               
                setIsAuthenticated(true);
                setTimeout(() => {
                router.replace('/(app)/home');

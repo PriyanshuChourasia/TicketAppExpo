@@ -29,6 +29,7 @@ export const Colors = {
 
 export const AppColors ={
   gray:{
+    gray100:'#f3f4f6',
     gray200:'#e5e7eb',
     gray500:'#6b7280',
     gray700:'#374151',
@@ -36,5 +37,12 @@ export const AppColors ={
   },
   red:{
     red600:'#dc2626'
-  }
+  },
+  green:{
+    green600:'#16a34a',
+    green400:'#4ade80',
+    green300:'#86efac',
+    green200:'#bbf7d0'
+  },
+  black:'black'
 }

@@ -10,7 +10,7 @@ import React, { useState } from "react"
 
 export const ProfileProvider = ({children}:any) =>{
 
-    const [profileData,setProfileData] = useState<IProfileInterface>(ProfileInitialState);
+    const [profileData,setProfileData] = useState<IProfileInterface | null>(ProfileInitialState);
 
     return(
         <ProfileContext.Provider value={{

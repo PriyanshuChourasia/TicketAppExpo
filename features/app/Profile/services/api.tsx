@@ -13,7 +13,6 @@ export async function getProfileInfo():Promise<AxiosResponse<IProfileInterface>>
         return response;
     }catch(error:any)
     {
-        console.log("Error",error);
         throw new Error("Network Error");
     }
 }
