@@ -1,8 +1,10 @@
 import { ThemedContainer } from "@/components/ThemedContainer";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 import { TextInput } from "react-native-paper";
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';   
+import { useGetGroupItemById } from "../hooks/useGetGroupItemById";
+import { ProfileContext } from "../../Profile/context/ProfileContext";
 
 
 
@@ -17,6 +19,16 @@ interface IAddInput{
 
 
 const AddInput: React.FC<IAddInput> = ({textInput,setOnModal,setTextInput,onModal}) =>{
+
+    const {profileData} = useContext(ProfileContext);
+    const {data,isSuccess} = useGetGroupItemById(profileData ? profileData.data.id : '');
+
+    useEffect(()=>{
+        if(isSuccess)
+        {
+            console.log("Data: ",data.data);
+        }
+    },[data,isSuccess]);
 
 
     const handleChange = (text:string) =>{

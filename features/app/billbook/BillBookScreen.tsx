@@ -1,9 +1,11 @@
 import { ThemedContainer } from "@/components/ThemedContainer";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { BillBookStyle } from "./styles/BiilBookStyle";
 import AddInput from "./components/AddInput";
 import { ModalView } from "@/components/ModalView";
 import AddGroupForm from "./components/AddGroupForm";
+import { useFocusEffect } from "expo-router";
+import { useQueryClient } from "@tanstack/react-query";
 
 
 
@@ -11,6 +13,13 @@ const BillBookScreen = () =>{
 
     const [groupInput,setGroupInput] = useState<string>('');
     const [groupModal,setGroupModal] = useState<boolean>(false);
+    const queryClient = useQueryClient();
+
+    useFocusEffect(
+        useCallback(()=>{
+            console.log("Hello")
+        },[])
+    );
 
     return(
         <>
