@@ -2,6 +2,7 @@ import { ProfileProvider } from "@/features/app/Profile/context/ProfileProvider"
 import AuthProvider from "../AuthContext/AuthProvider";
 import { ThemeProvider } from "../ThemeContext/ThemeProvider";
 import { CombineContext } from "./CombineContext";
+import ItemGroupProvider from "@/features/app/billbook/context/ItemGroupProvider";
 
 
 
@@ -10,7 +11,7 @@ import { CombineContext } from "./CombineContext";
 
 const providers =[
     AuthProvider,ThemeProvider,
-    ProfileProvider
+    ProfileProvider,ItemGroupProvider
 ];
 
 
